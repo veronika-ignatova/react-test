@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "react-test", "react-test\react-test.csproj", "{A0858AE2-7C8A-4201-B679-7D068244CB6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{0AE34E1F-4307-470A-A118-D689692746FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{09A33609-B5DA-44D3-A74C-5E750C92B1B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0858AE2-7C8A-4201-B679-7D068244CB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0858AE2-7C8A-4201-B679-7D068244CB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0858AE2-7C8A-4201-B679-7D068244CB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0858AE2-7C8A-4201-B679-7D068244CB6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AE34E1F-4307-470A-A118-D689692746FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE34E1F-4307-470A-A118-D689692746FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE34E1F-4307-470A-A118-D689692746FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE34E1F-4307-470A-A118-D689692746FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A33609-B5DA-44D3-A74C-5E750C92B1B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A33609-B5DA-44D3-A74C-5E750C92B1B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A33609-B5DA-44D3-A74C-5E750C92B1B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A33609-B5DA-44D3-A74C-5E750C92B1B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {660991D1-CF81-4772-B8C9-65A425B5E8CC}
+	EndGlobalSection
+EndGlobal
