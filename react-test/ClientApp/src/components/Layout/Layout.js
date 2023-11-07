@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { Container } from 'reactstrap';
-import {Link, Outlet} from "react-router-dom";
-import css from './Layout.css';
+import {Container} from 'reactstrap';
+import {NavMenu} from "../NavMenu/NavMenu";
 
 export class Layout extends Component {
     static displayName = Layout.name;
@@ -9,14 +8,8 @@ export class Layout extends Component {
     render() {
         return (
             <>
-                <div className={css.header}>
-                    <Link to="/">Home</Link>
-                    <Link to="/users">Users</Link>
-                    <Link to="/create">Create User</Link>
-                </div>
-                <Container>
-                    {this.props.children}
-                </Container>
+                <NavMenu/>
+                {this.props.children}
             </>
 
         );

@@ -9,5 +9,6 @@ namespace Core.Interface.Service
         IEnumerable<IUser> GetAllUsers();
         bool UpdateUser(IUser user);
         IUser GetUserByEmail(string email);
+        bool IsEmailUsed(string email);
     }
 }

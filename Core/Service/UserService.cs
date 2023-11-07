@@ -76,5 +76,11 @@ namespace Core.Service
         {
             return userRepository.GetUserByEmail(email);
         }
+
+        public bool IsEmailUsed(string email)
+        {
+            if (GetUserByEmail(email) == null) return false;
+            return true;
+        }
     }
 }

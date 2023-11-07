@@ -1,3 +1,4 @@
 export const urls = {
-    users: '/api/users'
+    users: '/api/users',
+    home: '/api/home'
 }

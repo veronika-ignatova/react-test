@@ -4,23 +4,37 @@ using Core.Service;
 using DataBase;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mime;
+using WebAPI.Helpers;
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+//var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("https://localhost:44449/","https://localhost:7069"); // add the allowed origins  
-                      });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: MyAllowSpecificOrigins,
+//                      policy =>
+//                      {
+//                          policy.WithOrigins("https://localhost:44449/","https://localhost:7069"); // add the allowed origins  
+//                      });
+//});
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().ConfigureApiBehaviorOptions(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var result = new ValidationFailedResult(context.ModelState);
+
+        // TODO: add `using System.Net.Mime;` to resolve MediaTypeNames
+        result.ContentTypes.Add(MediaTypeNames.Application.Json);
+        result.ContentTypes.Add(MediaTypeNames.Application.Xml);
+
+        return result;
+    };
+});
 
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection") ?? throw new InvalidOperationException("Connection string not found.")));
@@ -43,7 +57,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseCors(MyAllowSpecificOrigins);
+//app.UseCors(MyAllowSpecificOrigins);
 
 
 app.MapControllerRoute(

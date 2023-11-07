@@ -9,7 +9,7 @@ namespace WebAPI.Models
         public Guid Id { get; set; }
         
         [Required]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(50, MinimumLength = 10)]
         public string? Name { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]

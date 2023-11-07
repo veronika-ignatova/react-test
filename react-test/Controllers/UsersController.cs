@@ -3,14 +3,15 @@ using Core.Interface;
 using Core.Interface.Service;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Helpers.Attributes;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowOrigin")]
-
+    //[EnableCors("AllowOrigin")]
+    [ValidateModel]
     public class UsersController : Controller
     {
         private readonly IUserService _userService;
@@ -32,9 +33,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("email/{email}")]
-        public IUser GetUserByEmail(string email)
+        public IActionResult CheckEmail(string email)
         {
-            return _userService.GetUserByEmail(email);
+            return Json(new { isSuccess = !_userService.IsEmailUsed(email), messages = "This email is not available" });
         }
 
         [HttpPut("Update")]
@@ -58,8 +59,8 @@ namespace WebAPI.Controllers
             return _userService.UpdateUser(iUser);
         }
 
-        [HttpPost("create")]
-        public IActionResult Post(UserApiModel user)
+        [HttpPost]
+        public IActionResult CreateUser(UserApiModel user)
         {
             if (!string.IsNullOrEmpty(user?.Email) && _userService.IsUsedEmail(user?.Email)) return BadRequest();
             var iUser = new User()
