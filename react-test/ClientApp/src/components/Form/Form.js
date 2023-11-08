@@ -6,10 +6,12 @@ import "./Form.css"
 import {joiResolver} from "@hookform/resolvers/joi";
 import {UserValidator} from "../../validators/user.validator";
 import axiosService from "../../services/axios.service";
+import convertBase64 from "../Helper/ConvertBase64";
 
 const Form = () => {
 
     const [isEmailValid, setIsEmailValid] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const {
         setError,
@@ -25,7 +27,24 @@ const Form = () => {
     //     register, handleSubmit,watch,formState:{errors}
     // } = useForm({resolver:joiResolver(UserValidator)});
     //
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setSelectedFile(file);
+    };
+
+    const validateFile = (file) => {
+        if (file[0].size > 1024 * 256) {
+            return "Файл занадто великий. Максимальний розмір: 250KB.";
+        }
+        return true;
+    };
+
     const submit = async (user) => {
+        if(user?.photo?.length){
+            user.photo = await convertBase64(user.photo[0])
+        }
+
         console.log(user);
         const newUser = await userService.create(user)
             .then(value => value)
@@ -154,10 +173,21 @@ const Form = () => {
                 </div>
 
                 <div>
-                    <label>Photo:</label>
-                    <input type="file" {...register('image')}
-                         // onChange={onChange}
+                    <label>Завантажити фото:</label>
+                    {selectedFile && (
+                        <div className="rounded-image">
+                            <img src={URL.createObjectURL(selectedFile)} alt="Завантажена фото"/>
+                        </div>
+                    )}
+                    <input
+                        type="file"
+                        accept=".jpg, .jpeg, .png"
+                        {...register("photo", {
+                            onChange: handleFileChange,
+                            validate: validateFile
+                        })}
                     />
+                    {errors.photo && (<p>{errors.photo.message}</p>)}
                 </div>
 
                 <button type="submit">Зареєструватися</button>

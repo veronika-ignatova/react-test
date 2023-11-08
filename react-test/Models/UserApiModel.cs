@@ -24,6 +24,26 @@ namespace WebAPI.Models
         [StringLength(16, MinimumLength = 8)]
         public string? Password { get; set; }
     }
+    public class CreateUserApiModel
+    {
+
+        [Required]
+        [StringLength(50, MinimumLength = 10)]
+        public string? Name { get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        public string? Email { get; set; }
+        public AddressApiModel? Address { get; set; }
+
+        [Required]
+        [Range(18, 99)]
+        public int? Age { get; set; }
+
+        [Required]
+        [StringLength(16, MinimumLength = 8)]
+        public string? Password { get; set; }
+        public string? Photo { get; set; }
+    }
 
     public class AddressApiModel
     {

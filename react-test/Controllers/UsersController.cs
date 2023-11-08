@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateUser(UserApiModel user)
+        public IActionResult CreateUser(CreateUserApiModel user)
         {
             if (!string.IsNullOrEmpty(user?.Email) && _userService.IsUsedEmail(user?.Email)) return BadRequest();
             var iUser = new User()
